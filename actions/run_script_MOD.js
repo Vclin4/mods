@@ -6,7 +6,7 @@ module.exports = {
     return `${data.code}`;
   },
 
-  fields: ["code", "varName"],
+  fields: ["code", 'behavior'],
 
   html(isEvent, data) {
     return `
@@ -14,26 +14,17 @@ module.exports = {
         <button
           class="helpButton icon"
           onclick="changeState('helpTextDiv');">
-          <i class="help icon"></i>
+          <i class="setting icon"></i>
           </button>
         </div>
         <div style="right: 53px;" id="helpTextDiv">
-          <ul>
-            <h3>Note</h3>
-            <li>The mod was created for the <a href="#" onclick="DBM.openLink('https://github.com/MineEjo/DBM-Horizon-Theme')">Horizon theme</a>.</li>
-            <li>Mod author - <a href="#" onclick="DBM.openLink('https://github.com/MineEjo')">MineEjo</a>.</li>
-            <li>Discord Bot Maker <a href="#" onclick="DBM.openLink('https://silversunset.net/dbm/scripts?topic=How_do_scipts_work')">Script Docs</a>.</li>
-            <h3>Variable Caching</h3>
-            this.storeValue(jsVariable, 1, "variableName", cache);<br><br>
-            So the first parameter, jsVariable should be changed to what ever js variable you want to save.<br>
-            The second parameter, the 1 can be changed.<br>
-            The number ranges from 1-3<br>
-            1 = Temp Variable<br>
-            2 = Server Variable<br>
-            3 = Global Variable<br>
-            The last parameter, the variableName can be changed to whatever you want the new DBM variable's name to be set to. </li>
-            <h3>Other</h3>
-            <li>Search Bind: Ctrl + F</li>
+          <ul style="list-style: none; margin-left: -25px;">
+              <li> The mod was created for the <a href="#" onclick="DBM.openLink('https://github.com/MineEjo/DBM-Horizon-Theme')"> Horizon theme </a>.</li>
+            <div style="margin-top: 5px"> End Behavior:
+              <select id="behavior" class="round">
+                    <option value="0" selected> Call Next Action Automatically </option>
+                    <option value="1"> Do Not Call Next Action </option></select>
+            </div>
           </ul>
         </div>
         <div id="maximixeDiv">
@@ -60,7 +51,9 @@ module.exports = {
   },
 
   init() {
-    const { document } = this;
+    const {
+      document
+    } = this;
 
     document.getElementById("JSEditor").src =
       "data:text/html," +
@@ -233,9 +226,7 @@ module.exports = {
 </style>`;
     document.getElementById("JSEditor").addEventListener("load", function () {
       if (document.getElementById("code").value) {
-        this.contentWindow.document.getElementById("hideCode").value =
-          document.getElementById("code").value;
-        // eslint-disable-next-line no-undef
+        this.contentWindow.document.getElementById("hideCode").value = document.getElementById("code").value;
         this.contentWindow.document
           .getElementById("hideCode")
           .dispatchEvent(new Event("_load"));
@@ -246,9 +237,7 @@ module.exports = {
     document.getElementById("code").addEventListener("input", () => {
       document
         .getElementById("JSEditor")
-        .contentWindow.document.getElementById("hideCode").value =
-        document.getElementById("code").value;
-      // eslint-disable-next-line no-undef
+        .contentWindow.document.getElementById("hideCode").value = document.getElementById("code").value;
       document
         .getElementById("JSEditor")
         .contentWindow.document.getElementById("hideCode")
@@ -266,8 +255,7 @@ module.exports = {
 
     document
       .getElementById("JSEditor")
-      .contentWindow.document.getElementById("hideCode").value =
-      document.getElementById("code").value;
+      .contentWindow.document.getElementById("hideCode").value = document.getElementById("code").value;
     document
       .getElementById("JSEditor")
       .contentWindow.document.getElementById("hideCode")
@@ -284,7 +272,7 @@ module.exports = {
     code = data.code;
     this.eval(code, cache);
 
-    this.callNextAction(cache);
+    if (data.behavior === '0') this.callNextAction(cache)
   },
 
   mod() {},
