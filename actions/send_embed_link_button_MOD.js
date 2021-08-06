@@ -50,8 +50,8 @@ module.exports = {
   <input id="buttonsCount" class="round" type="text" placeholder="1-5"><br>
 	</div>
 	<div style="float: right; width: 50%; padding-top: 8px;">
-  Color: <a target="_blank" href="https://www.rapidtables.com/convert/number/hex-to-decimal.html">(calculator)</a><br>
-  <input id="color" class="round" type="text" placeholder="Only Decimal!"><br>
+  Color:<br>
+  <input id="color" class="round" type="text" placeholder="Leave blank for none!"><br>
   Title:<br>
   <input id="title" class="round" type="text" placeholder="Leave blank for none!"><br>
 	Thumbnail URL:<br>
@@ -133,53 +133,130 @@ module.exports = {
     let fourthButtonText = this.evalMessage(data.fourthButtonText, cache);
     let fifthButtonLink = this.evalMessage(data.fifthButtonLink, cache);
     let fifthButtonText = this.evalMessage(data.fifthButtonText, cache);
+
     if (buttonsCount == 0) {
-      console.error(
-        "Send Embed Button Message: Specify the number of buttons."
-      );
+      console.error("Send Embed Button Message: Specify the number of buttons.");
       return;
     }
     if (buttonsCount > 5) {
-      console.error(
-        "Send Embed Button Message: Too many buttons are specified."
-      );
+      console.error("Send Embed Button Message: Too many buttons are specified.");
+      return;
+    }
+    if (channelid.length < 3) {
+      console.error("Send Embed Button Message: There is an error in the channel ID field.");
+      return;
+    }
+    if (serverid.length < 3) {
+      console.error("Send Embed Button Message: There is an error in the server ID field.");
       return;
     }
 
+    embedcolor = embedcolor.replace("#", "");
+    embedcolor = parseInt(embedcolor, 16);
+
     switch (buttonsCount) {
       case "1":
-        buttons = [
-          { type: 2, style: 5, url: firstButtonLink, label: firstButtonText },
-        ];
+        buttons = [{
+          type: 2,
+          style: 5,
+          url: firstButtonLink,
+          label: firstButtonText
+        }, ];
         break;
       case "2":
-        buttons = [
-          { type: 2, style: 5, url: firstButtonLink, label: firstButtonText },
-          { type: 2, style: 5, url: secondButtonLink, label: secondButtonText },
+        buttons = [{
+            type: 2,
+            style: 5,
+            url: firstButtonLink,
+            label: firstButtonText
+          },
+          {
+            type: 2,
+            style: 5,
+            url: secondButtonLink,
+            label: secondButtonText
+          },
         ];
         break;
       case "3":
-        buttons = [
-          { type: 2, style: 5, url: firstButtonLink, label: firstButtonText },
-          { type: 2, style: 5, url: secondButtonLink, label: secondButtonText },
-          { type: 2, style: 5, url: thirdButtonLink, label: thirdButtonText },
+        buttons = [{
+            type: 2,
+            style: 5,
+            url: firstButtonLink,
+            label: firstButtonText
+          },
+          {
+            type: 2,
+            style: 5,
+            url: secondButtonLink,
+            label: secondButtonText
+          },
+          {
+            type: 2,
+            style: 5,
+            url: thirdButtonLink,
+            label: thirdButtonText
+          },
         ];
         break;
       case "4":
-        buttons = [
-          { type: 2, style: 5, url: firstButtonLink, label: firstButtonText },
-          { type: 2, style: 5, url: secondButtonLink, label: secondButtonText },
-          { type: 2, style: 5, url: thirdButtonLink, label: thirdButtonText },
-          { type: 2, style: 5, url: fourthButtonLink, label: fourthButtonText },
+        buttons = [{
+            type: 2,
+            style: 5,
+            url: firstButtonLink,
+            label: firstButtonText
+          },
+          {
+            type: 2,
+            style: 5,
+            url: secondButtonLink,
+            label: secondButtonText
+          },
+          {
+            type: 2,
+            style: 5,
+            url: thirdButtonLink,
+            label: thirdButtonText
+          },
+          {
+            type: 2,
+            style: 5,
+            url: fourthButtonLink,
+            label: fourthButtonText
+          },
         ];
         break;
       case "5":
-        buttons = [
-          { type: 2, style: 5, url: firstButtonLink, label: firstButtonText },
-          { type: 2, style: 5, url: secondButtonLink, label: secondButtonText },
-          { type: 2, style: 5, url: thirdButtonLink, label: thirdButtonText },
-          { type: 2, style: 5, url: fourthButtonLink, label: fourthButtonText },
-          { type: 2, style: 5, url: fifthButtonLink, label: fifthButtonText },
+        buttons = [{
+            type: 2,
+            style: 5,
+            url: firstButtonLink,
+            label: firstButtonText
+          },
+          {
+            type: 2,
+            style: 5,
+            url: secondButtonLink,
+            label: secondButtonText
+          },
+          {
+            type: 2,
+            style: 5,
+            url: thirdButtonLink,
+            label: thirdButtonText
+          },
+          {
+            type: 2,
+            style: 5,
+            url: fourthButtonLink,
+            label: fourthButtonText
+          },
+          {
+            type: 2,
+            style: 5,
+            url: fifthButtonLink,
+            label: fifthButtonText
+          },
         ];
         break;
     }
@@ -280,12 +357,10 @@ module.exports = {
     client.api.channels(channelid).messages.post({
       data: {
         embeds: [embed],
-        components: [
-          {
-            type: 1,
-            components: buttons,
-          },
-        ],
+        components: [{
+          type: 1,
+          components: buttons,
+        }, ],
       },
     });
 
