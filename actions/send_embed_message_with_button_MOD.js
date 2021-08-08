@@ -19,8 +19,11 @@ module.exports = {
     "varName",
     "channelID",
     "serverID",
+    "varMember",
+    "varNameMember",
     "varNameButton",
     "storageButton",
+    "replyflags",
     "button",
     "button_sec",
     "button_thi",
@@ -70,7 +73,17 @@ module.exports = {
     "buttonemojiid_fou",
     "buttonemojianimated_fou",
     "buttonemojiid_fif",
-    "buttonemojianimated_fif"
+    "buttonemojianimated_fif",
+    "call",
+    "call_sec",
+    "call_thi",
+    "call_fou",
+    "call_fif",
+    "jumpidanchor",
+    "jumpidanchor_sec",
+    "jumpidanchor_thi",
+    "jumpidanchor_fou",
+    "jumpidanchor_fif"
   ],
 
   html(isEvent, data) {
@@ -99,40 +112,48 @@ module.exports = {
         <option value="3">Custom Emoji Button</option>
       </select>
       <div style="float: left; width: 20%; margin-top: 5px;">
-        Label:<br>
+        Label*:<br>
         <input id="buttonlabel" class="round" type="text" placeholder="String">
       </div>
       <div style="float: left; width: 15%; margin-left: 5%; margin-top: 5px;">
-        Disabled:<br>
+        Disabled*:<br>
         <input id="buttondisabled" class="round" type="text" placeholder="Boolean">
       </div>
       <div id="divbuttonstyle" style="float: left; width: 9%; margin-left: 5%; margin-top: 5px;">
-        Style:<br>
+        Style*:<br>
         <input id="buttonstyle" class="round" type="text" placeholder="Integer">
       </div>
       <div id="divbuttonid" style="float: left; width: 40%; margin-left: 5%; margin-top: 5px;">
-      ID:<br>
+      ID*:<br>
         <input id="buttonid" class="round" type="text" placeholder="String">
       </div>
       <div id="divbuttonurl" style="display: none; float: left; width: 40%; margin-left: 5%; margin-top: 5px;">
-      Url:<br>
+      Url*:<br>
       <input id="buttonurl" class="round" type="text" placeholder="String">
     </div>
       <div id="divbuttonemoji" style="display: none; float: left; width: 15%; margin-left: 5%; margin-top: 5px;">
-      Emoji:<br>
+      Emoji*:<br>
         <input id="buttonemoji" class="round" type="text" placeholder="String">
       </div>
       <div id="divbuttonemojiid" style="display: none; float: left; width: 25%;  margin-top: 5px;">
-      Emoji ID:<br>
+      Emoji ID*:<br>
         <input id="buttonemojiid" class="round" type="text" placeholder="Integer">
       </div>
       <div id="divbuttonemojianimated" style="display: none; float: left; width: 25%; margin-left: 5%; margin-top: 5px;">
-      Emoji Animated:<br>
+      Emoji Animated*:<br>
         <input id="buttonemojianimated" class="round" type="text" placeholder="Boolean">
       </div>
       <div id="divbuttoncontent" style="float: left; width: 99%; margin-top: 5px;">
-      Content:<br>
-      <textarea style="width: 100%; resize: none;" id="buttoncontent" class="round" type="text" placeholder="String"></textarea>
+      Reply:<br>
+      <textarea style="width: 100%; resize: vertical;" id="buttoncontent" class="round" type="text" placeholder="String"></textarea>
+    </div>
+    <div style="float: left; width: 54%; margin-top: 5px;">
+      Go to action when the button is pressed:<br>
+      <input id="call" class="round" placeholder="Action number" type="number">
+    </div>
+    <div style="float: left; width: 40%; margin-top: 5px; margin-left: 5%;">
+      Jump to Anchor ID:<br>
+      <input type="text" class="round" id="jumpidanchor"><br>
     </div>
   </div>
  </div>
@@ -146,40 +167,48 @@ module.exports = {
         <option value="3">Custom Emoji Button</option>
       </select>
       <div style="float: left; width: 20%; margin-top: 5px;">
-        Label:<br>
+        Label*:<br>
         <input id="buttonlabel_sec" class="round" type="text" placeholder="String">
       </div>
       <div style="float: left; width: 15%; margin-left: 5%; margin-top: 5px;">
-        Disabled:<br>
+        Disabled*:<br>
         <input id="buttondisabled_sec" class="round" type="text" placeholder="Boolean">
       </div>
       <div id="divbuttonstyle_sec" style="float: left; width: 9%; margin-left: 5%; margin-top: 5px;">
-        Style:<br>
+        Style*:<br>
         <input id="buttonstyle_sec" class="round" type="text" placeholder="Integer">
       </div>
       <div id="divbuttonid_sec" style="float: left; width: 40%; margin-left: 5%; margin-top: 5px;">
-      ID:<br>
+      ID*:<br>
         <input id="buttonid_sec" class="round" type="text" placeholder="String">
       </div>
       <div id="divbuttonurl_sec" style="display: none; float: left; width: 40%; margin-left: 5%; margin-top: 5px;">
-      Url:<br>
+      Url*:<br>
       <input id="buttonurl_sec" class="round" type="text" placeholder="String">
     </div>
       <div id="divbuttonemoji_sec" style="display: none; float: left; width: 15%; margin-left: 5%; margin-top: 5px;">
-      Emoji:<br>
+      Emoji*:<br>
         <input id="buttonemoji_sec" class="round" type="text" placeholder="String">
       </div>
       <div id="divbuttonemojiid_sec" style="display: none; float: left; width: 25%;  margin-top: 5px;">
-      Emoji ID:<br>
+      Emoji ID*:<br>
         <input id="buttonemojiid_sec" class="round" type="text" placeholder="Integer">
       </div>
       <div id="divbuttonemojianimated_sec" style="display: none; float: left; width: 25%; margin-left: 5%; margin-top: 5px;">
-      Emoji Animated:<br>
+      Emoji Animated*:<br>
         <input id="buttonemojianimated_sec" class="round" type="text" placeholder="Boolean">
       </div>
       <div id="divbuttoncontent_sec" style="float: left; width: 99%; margin-top: 5px;">
-      Content:<br>
-      <textarea style="width: 100%; resize: none;" id="buttoncontent_sec" class="round" type="text" placeholder="String"></textarea>
+      Reply:<br>
+      <textarea style="width: 100%; resize: vertical;" id="buttoncontent_sec" class="round" type="text" placeholder="String"></textarea>
+    </div>
+    <div style="float: left; width: 54%; margin-top: 5px;">
+      Go to action when the button is pressed:<br>
+      <input id="call_sec" class="round" placeholder="Action number" type="number">
+    </div>
+    <div style="float: left; width: 40%; margin-top: 5px; margin-left: 5%;">
+      Jump to Anchor ID:<br>
+      <input type="text" class="round" id="jumpidanchor_sec"><br>
     </div>
   </div>
  </div>
@@ -193,40 +222,48 @@ module.exports = {
         <option value="3">Custom Emoji Button</option>
       </select>
       <div style="float: left; width: 20%; margin-top: 5px;">
-        Label:<br>
+        Label*:<br>
         <input id="buttonlabel_thi" class="round" type="text" placeholder="String">
       </div>
       <div style="float: left; width: 15%; margin-left: 5%; margin-top: 5px;">
-        Disabled:<br>
+        Disabled*:<br>
         <input id="buttondisabled_thi" class="round" type="text" placeholder="Boolean">
       </div>
       <div id="divbuttonstyle_thi" style="float: left; width: 9%; margin-left: 5%; margin-top: 5px;">
-        Style:<br>
+        Style*:<br>
         <input id="buttonstyle_thi" class="round" type="text" placeholder="Integer">
       </div>
       <div id="divbuttonid_thi" style="float: left; width: 40%; margin-left: 5%; margin-top: 5px;">
-      ID:<br>
+      ID*:<br>
         <input id="buttonid_thi" class="round" type="text" placeholder="String">
       </div>
       <div id="divbuttonurl_thi" style="display: none; float: left; width: 40%; margin-left: 5%; margin-top: 5px;">
-      Url:<br>
+      Url*:<br>
       <input id="buttonurl_thi" class="round" type="text" placeholder="String">
     </div>
       <div id="divbuttonemoji_thi" style="display: none; float: left; width: 15%; margin-left: 5%; margin-top: 5px;">
-      Emoji:<br>
+      Emoji*:<br>
         <input id="buttonemoji_thi" class="round" type="text" placeholder="String">
       </div>
       <div id="divbuttonemojiid_thi" style="display: none; float: left; width: 25%;  margin-top: 5px;">
-      Emoji ID:<br>
+      Emoji ID*:<br>
         <input id="buttonemojiid_thi" class="round" type="text" placeholder="Integer">
       </div>
       <div id="divbuttonemojianimated_thi" style="display: none; float: left; width: 25%; margin-left: 5%; margin-top: 5px;">
-      Emoji Animated:<br>
+      Emoji Animated*:<br>
         <input id="buttonemojianimated_thi" class="round" type="text" placeholder="Boolean">
       </div>
       <div id="divbuttoncontent_thi" style="float: left; width: 99%; margin-top: 5px;">
-      Content:<br>
-      <textarea style="width: 100%; resize: none;" id="buttoncontent_thi" class="round" type="text" placeholder="String"></textarea>
+      Reply:<br>
+      <textarea style="width: 100%; resize: vertical;" id="buttoncontent_thi" class="round" type="text" placeholder="String"></textarea>
+    </div>
+    <div style="float: left; width: 54%; margin-top: 5px;">
+      Go to action when the button is pressed:<br>
+      <input id="call_thi" class="round" placeholder="Action number" type="number">
+    </div>
+    <div style="float: left; width: 40%; margin-top: 5px; margin-left: 5%;">
+      Jump to Anchor ID:<br>
+      <input type="text" class="round" id="jumpidanchor_thi"><br>
     </div>
   </div>
  </div>
@@ -240,41 +277,49 @@ module.exports = {
      <option value="3">Custom Emoji Button</option>
    </select>
    <div style="float: left; width: 20%; margin-top: 5px;">
-     Label:<br>
+     Label*:<br>
      <input id="buttonlabel_fou" class="round" type="text" placeholder="String">
    </div>
    <div style="float: left; width: 15%; margin-left: 5%; margin-top: 5px;">
-     Disabled:<br>
+     Disabled*:<br>
      <input id="buttondisabled_fou" class="round" type="text" placeholder="Boolean">
    </div>
    <div id="divbuttonstyle_fou" style="float: left; width: 9%; margin-left: 5%; margin-top: 5px;">
-     Style:<br>
+     Style*:<br>
      <input id="buttonstyle_fou" class="round" type="text" placeholder="Integer">
    </div>
    <div id="divbuttonid_fou" style="float: left; width: 40%; margin-left: 5%; margin-top: 5px;">
-   ID:<br>
+   ID*:<br>
      <input id="buttonid_fou" class="round" type="text" placeholder="String">
    </div>
    <div id="divbuttonurl_fou" style="display: none; float: left; width: 40%; margin-left: 5%; margin-top: 5px;">
-   Url:<br>
+   Url*:<br>
    <input id="buttonurl_fou" class="round" type="text" placeholder="String">
  </div>
    <div id="divbuttonemoji_fou" style="display: none; float: left; width: 15%; margin-left: 5%; margin-top: 5px;">
-   Emoji:<br>
+   Emoji*:<br>
      <input id="buttonemoji_fou" class="round" type="text" placeholder="String">
    </div>
    <div id="divbuttonemojiid_fou" style="display: none; float: left; width: 25%;  margin-top: 5px;">
-   Emoji ID:<br>
+   Emoji ID*:<br>
      <input id="buttonemojiid_fou" class="round" type="text" placeholder="Integer">
    </div>
    <div id="divbuttonemojianimated_fou" style="display: none; float: left; width: 25%; margin-left: 5%; margin-top: 5px;">
-   Emoji Animated:<br>
+   Emoji Animated*:<br>
      <input id="buttonemojianimated_fou" class="round" type="text" placeholder="Boolean">
    </div>
    <div id="divbuttoncontent_fou" style="float: left; width: 99%; margin-top: 5px;">
-   Content:<br>
-   <textarea style="width: 100%; resize: none;" id="buttoncontent_fou" class="round" type="text" placeholder="String"></textarea>
+   Reply:<br>
+   <textarea style="width: 100%; resize: vertical;" id="buttoncontent_fou" class="round" type="text" placeholder="String"></textarea>
  </div>
+  <div style="float: left; width: 54%; margin-top: 5px;">
+    Go to action when the button is pressed:<br>
+    <input id="call_fou" class="round" placeholder="Action number" type="number">
+  </div>
+    <div style="float: left; width: 40%; margin-top: 5px; margin-left: 5%;">
+    Jump to Anchor ID:<br>
+    <input type="text" class="round" id="jumpidanchor_fou"><br>
+  </div>
 </div>
 </div>
 
@@ -287,45 +332,57 @@ module.exports = {
     <option value="3">Custom Emoji Button</option>
   </select>
   <div style="float: left; width: 20%; margin-top: 5px;">
-    Label:<br>
+    Label*:<br>
     <input id="buttonlabel_fif" class="round" type="text" placeholder="String">
   </div>
   <div style="float: left; width: 15%; margin-left: 5%; margin-top: 5px;">
-    Disabled:<br>
+    Disabled*:<br>
     <input id="buttondisabled_fif" class="round" type="text" placeholder="Boolean">
   </div>
   <div id="divbuttonstyle_fif" style="float: left; width: 9%; margin-left: 5%; margin-top: 5px;">
-    Style:<br>
+    Style*:<br>
     <input id="buttonstyle_fif" class="round" type="text" placeholder="Integer">
   </div>
   <div id="divbuttonid_fif" style="float: left; width: 40%; margin-left: 5%; margin-top: 5px;">
-  ID:<br>
+  ID*:<br>
     <input id="buttonid_fif" class="round" type="text" placeholder="String">
   </div>
   <div id="divbuttonurl_fif" style="display: none; float: left; width: 40%; margin-left: 5%; margin-top: 5px;">
-  Url:<br>
+  Url*:<br>
   <input id="buttonurl_fif" class="round" type="text" placeholder="String">
 </div>
   <div id="divbuttonemoji_fif" style="display: none; float: left; width: 15%; margin-left: 5%; margin-top: 5px;">
-  Emoji:<br>
+  Emoji*:<br>
     <input id="buttonemoji_fif" class="round" type="text" placeholder="String">
   </div>
   <div id="divbuttonemojiid_fif" style="display: none; float: left; width: 25%;  margin-top: 5px;">
-  Emoji ID:<br>
+  Emoji ID*:<br>
     <input id="buttonemojiid_fif" class="round" type="text" placeholder="Integer">
   </div>
   <div id="divbuttonemojianimated_fif" style="display: none; float: left; width: 25%; margin-left: 5%; margin-top: 5px;">
-  Emoji Animated:<br>
+  Emoji Animated*:<br>
     <input id="buttonemojianimated_fif" class="round" type="text" placeholder="Boolean">
   </div>
   <div id="divbuttoncontent_fif" style="float: left; width: 99%; margin-top: 5px;">
-  Content:<br>
-  <textarea style="width: 100%; resize: none;" id="buttoncontent_fif" class="round" type="text" placeholder="String"></textarea>
+  Reply:<br>
+  <textarea style="width: 100%; resize: vertical;" id="buttoncontent_fif" class="round" type="text" placeholder="String"></textarea>
 </div>
+  <div style="float: left; width: 54%; margin-top: 5px;">
+      Go to action when the button is pressed:<br>
+      <input id="call_fif" class="round" placeholder="Action number" type="number">
+    </div>
+    <div style="float: left; width: 40%; margin-top: 5px; margin-left: 5%;">
+      Jump to Anchor ID:<br>
+      <input type="text" class="round" id="jumpidanchor_fif"><br>
+    </div>
 </div>
 </div>
 
 <div style="float: left; width: 100%">
+  <div style="float: left; width: 35%;">
+    Reply Flags:<br>
+    <input id="replyflags" class="round" placeholder="Integer" type="text">
+  </div><br><br><br>
 <div style="float: left; width: 35%;">
     Store Pressing Button In:<br>
     <select id="storageButton" class="round" onchange="glob.variableChange(this, 'varNameContainerButton')">
@@ -337,7 +394,7 @@ module.exports = {
     <input id="varNameButton" class="round" type="text">
   </div><br><br><br>
 <div style="float: left; width: 35%;">
-    Send to:<br>
+    Send to*:<br>
     <input id="channelID" class="round" type="text" placeholder="Channel ID...">
   </div>
   <div style="float: right; width: 60%;">
@@ -354,6 +411,16 @@ module.exports = {
     Storage Variable Name:<br>
     <input id="varName3" class="round" type="text">
   </div><br><br><br>
+  <div style="float: left; width: 35%;">
+    Activating for a member:<br>
+		<select id="varMember" class="round" onchange="glob.memberChange(this, 'varNameContainerMember')">
+			${data.members[isEvent ? 1 : 0]}
+		</select>
+	</div>
+	<div id="varNameContainerMember" style="display: none; float: right; width: 60%;">
+		Variable Name:<br>
+		<input id="varNameMember" class="round" type="text" list="variableList"><br>
+	</div>
 </div>
 </div>`;
   },
@@ -371,6 +438,8 @@ module.exports = {
         element.style.display = "none";
       }
     }
+
+    glob.memberChange(document.getElementById("member"), "varNameContainer");
 
     glob.button = function (element) {
       let divbuttonid, divbuttonstyle, divbuttonurl, divbuttonemoji;
@@ -477,6 +546,11 @@ module.exports = {
     const serverid = this.evalMessage(data.serverID, cache);
     const varNameButton = this.evalMessage(data.varNameButton, cache)
     const storageButton = parseInt(data.storageButton)
+    const replyflags = this.evalMessage(data.replyflags, cache)
+
+    const varMember = parseInt(data.varMember);
+    const varNameMember = this.evalMessage(data.varNameMember, cache);
+    const memberCustom = this.getMember(varMember, varNameMember, cache);
 
     if (channelid.length < 3) {
       console.error("Send Embed Message With Button: There is an error in the channel ID field.");
@@ -488,7 +562,7 @@ module.exports = {
     }
 
     let button_count = 0;
-    let buttonlabel, button, buttonstyle, buttondisabled, buttonid, buttoncontent, buttonurl, buttonemoji;
+    let buttonlabel, button, buttonstyle, buttondisabled, buttonid, buttoncontent, buttonurl, buttonemoji, buttonemojiid, buttonemojianimated, jumpidanchor;
     buttonlabel = this.evalMessage(data.buttonlabel, cache);
     if (buttonlabel.length != 0) {
       button_count++;
@@ -501,9 +575,10 @@ module.exports = {
       buttonemoji = this.evalMessage(data.buttonemoji, cache);
       buttonemojiid = this.evalMessage(data.buttonemojiid, cache);
       buttonemojianimated = this.evalMessage(data.buttonemojianimated, cache);
+      jumpidanchor = this.evalMessage(data.jumpidanchor, cache)
     }
 
-    let buttonlabel_sec, button_sec, buttonstyle_sec, buttondisabled_sec, buttonid_sec, buttoncontent_sec, buttonurl_sec, buttonemoji_sec;
+    let buttonlabel_sec, button_sec, buttonstyle_sec, buttondisabled_sec, buttonid_sec, buttoncontent_sec, buttonurl_sec, buttonemoji_sec, buttonemojiid_sec, buttonemojianimated_sec, jumpidanchor_sec;
     buttonlabel_sec = this.evalMessage(data.buttonlabel_sec, cache);
     if (buttonlabel_sec.length != 0) {
       button_count++;
@@ -516,9 +591,10 @@ module.exports = {
       buttonemoji_sec = this.evalMessage(data.buttonemoji_sec, cache);
       buttonemojiid_sec = this.evalMessage(data.buttonemojiid_sec, cache);
       buttonemojianimated_sec = this.evalMessage(data.buttonemojianimated_sec, cache);
+      jumpidanchor_sec = this.evalMessage(data.jumpidanchor_sec, cache)
     }
 
-    let buttonlabel_thi, button_thi, buttonstyle_thi, buttondisabled_thi, buttonid_thi, buttoncontent_thi, buttonurl_thi, buttonemoji_thi;
+    let buttonlabel_thi, button_thi, buttonstyle_thi, buttondisabled_thi, buttonid_thi, buttoncontent_thi, buttonurl_thi, buttonemoji_thi, buttonemojiid_thi, buttonemojianimated_thi, jumpidanchor_thi;
     buttonlabel_thi = this.evalMessage(data.buttonlabel_thi, cache);
     if (buttonlabel_thi.length != 0) {
       button_count++;
@@ -531,9 +607,10 @@ module.exports = {
       buttonemoji_thi = this.evalMessage(data.buttonemoji_thi, cache);
       buttonemojiid_thi = this.evalMessage(data.buttonemojiid_thi, cache);
       buttonemojianimated_thi = this.evalMessage(data.buttonemojianimated_thi, cache);
+      jumpidanchor_thi = this.evalMessage(data.jumpidanchor_thi, cache)
     }
 
-    let buttonlabel_fou, button_fou, buttonstyle_fou, buttondisabled_fou, buttonid_fou, buttoncontent_fou, buttonurl_fou, buttonemoji_fou;
+    let buttonlabel_fou, button_fou, buttonstyle_fou, buttondisabled_fou, buttonid_fou, buttoncontent_fou, buttonurl_fou, buttonemoji_fou, buttonemojiid_fou, buttonemojianimated_fou, jumpidanchor_fou;
     buttonlabel_fou = this.evalMessage(data.buttonlabel_fou, cache);
     if (buttonlabel_fou.length != 0) {
       button_count++;
@@ -546,9 +623,10 @@ module.exports = {
       buttonemoji_fou = this.evalMessage(data.buttonemoji_fou, cache);
       buttonemojiid_fou = this.evalMessage(data.buttonemojiid_fou, cache);
       buttonemojianimated_fou = this.evalMessage(data.buttonemojianimated_fou, cache);
+      jumpidanchor_fou = this.evalMessage(data.jumpidanchor_fou, cache)
     }
 
-    let buttonlabel_fif, button_fif, buttonstyle_fif, buttondisabled_fif, buttonid_fif, buttoncontent_fif, buttonurl_fif, buttonemoji_fif;
+    let buttonlabel_fif, button_fif, buttonstyle_fif, buttondisabled_fif, buttonid_fif, buttoncontent_fif, buttonurl_fif, buttonemoji_fif, buttonemojiid_fif, buttonemojianimated_fif, jumpidanchor_fif;
     buttonlabel_fif = this.evalMessage(data.buttonlabel_fif, cache);
     if (buttonlabel_fif.length != 0) {
       button_count++;
@@ -561,6 +639,7 @@ module.exports = {
       buttonemoji_fif = this.evalMessage(data.buttonemoji_fif, cache);
       buttonemojiid_fif = this.evalMessage(data.buttonemojiid_fif, cache);
       buttonemojianimated_fif = this.evalMessage(data.buttonemojianimated_fif, cache);
+      jumpidanchor_fif = this.evalMessage(data.jumpidanchor_fif, cache)
     }
 
     if (button_count == 0) {
@@ -589,34 +668,112 @@ module.exports = {
       let press_button;
 
       if (GMbuttonid == 1) {
-        if (buttoncontent.length > 0) returnText = buttoncontent;
-        press_button = "1";
-        this.storeValue(press_button, storageButton, varNameButton, cache)
-        this.callNextAction(cache);
+        if (memberCustom.id == member.user.id) {
+          if (buttoncontent.length > 0) returnText = buttoncontent;
+          if (varNameButton.length > 0) {
+            press_button = "1";
+            this.storeValue(press_button, storageButton, varNameButton, cache)
+          }
+          const val = parseInt(this.evalMessage(data.call, cache))
+          if (val > 0) {
+            const index = Math.max(val - 1, 0)
+            if (cache.actions[index]) {
+              cache.index = index - 1
+              this.callNextAction(cache)
+            }
+          }
+          if (jumpidanchor > 0) {
+            this.anchorJump(jumpidanchor, cache)
+          }
+        }
       }
       if (GMbuttonid == 2) {
-        if (buttoncontent_sec.length > 0) returnText = buttoncontent_sec;
-        press_button = "2";
-        this.storeValue(press_button, storageButton, varNameButton, cache)
-        this.callNextAction(cache);
+        if (memberCustom.id == member.user.id) {
+          if (buttoncontent_sec.length > 0) returnText = buttoncontent_sec;
+          if (varNameButton.length > 0) {
+            press_button = "2";
+            this.storeValue(press_button, storageButton, varNameButton, cache)
+          }
+          const val = parseInt(this.evalMessage(data.call_sec, cache))
+          if (val > 0) {
+            const index = Math.max(val - 1, 0)
+            if (cache.actions[index]) {
+              cache.index = index - 1
+              this.callNextAction(cache)
+            }
+          }
+          if (jumpidanchor_sec > 0) {
+            this.anchorJump(jumpidanchor_sec, cache)
+          }
+        }
       }
       if (GMbuttonid == 3) {
-        if (buttoncontent_thi.length > 0) returnText = buttoncontent_thi;
-        press_button = "3";
-        this.storeValue(press_button, storageButton, varNameButton, cache)
-        this.callNextAction(cache);
+        if (memberCustom.id == member.user.id) {
+          if (buttoncontent_thi.length > 0) returnText = buttoncontent_thi;
+          if (varNameButton.length > 0) {
+            press_button = "3";
+            this.storeValue(press_button, storageButton, varNameButton, cache)
+          }
+          const val = parseInt(this.evalMessage(data.call_thi, cache))
+          if (val > 0) {
+            const index = Math.max(val - 1, 0)
+            if (cache.actions[index]) {
+              cache.index = index - 1
+              this.callNextAction(cache)
+            }
+          }
+          if (jumpidanchor_thi > 0) {
+            this.anchorJump(jumpidanchor_thi, cache)
+          }
+        }
       }
       if (GMbuttonid == 4) {
-        if (buttoncontent_fou.length > 0) returnText = buttoncontent_fou;
-        press_button = "4";
-        this.storeValue(press_button, storageButton, varNameButton, cache)
-        this.callNextAction(cache);
+        if (memberCustom.id == member.user.id) {
+          if (buttoncontent_fou.length > 0) returnText = buttoncontent_fou;
+          if (varNameButton.length > 0) {
+            press_button = "4";
+            this.storeValue(press_button, storageButton, varNameButton, cache)
+          }
+          const val = parseInt(this.evalMessage(data.call_fou, cache))
+          if (val > 0) {
+            const index = Math.max(val - 1, 0)
+            if (cache.actions[index]) {
+              cache.index = index - 1
+              this.callNextAction(cache)
+            }
+          }
+          if (jumpidanchor_fou > 0) {
+            this.anchorJump(jumpidanchor_fou, cache)
+          }
+        }
       }
       if (GMbuttonid == 5) {
-        if (buttoncontent_fif.length > 0) returnText = buttoncontent_fif;
-        press_button = "5";
-        this.storeValue(press_button, storageButton, varNameButton, cache)
-        this.callNextAction(cache);
+        if (memberCustom.id == member.user.id) {
+          if (buttoncontent_fif.length > 0) returnText = buttoncontent_fif;
+          if (varNameButton.length > 0) {
+            press_button = "5";
+            this.storeValue(press_button, storageButton, varNameButton, cache)
+          }
+          const val = parseInt(this.evalMessage(data.call_fif, cache))
+          if (val > 0) {
+            const index = Math.max(val - 1, 0)
+            if (cache.actions[index]) {
+              cache.index = index - 1
+              this.callNextAction(cache)
+            }
+          }
+          if (jumpidanchor_fif > 0) {
+            this.anchorJump(jumpidanchor_fif, cache)
+          }
+        }
+      }
+
+      function call(val) {
+        const index = Math.max(val - 1, 0)
+        if (cache.actions[index]) {
+          cache.index = index - 1
+          this.callNextAction(cache)
+        }
       }
 
       if (returnText !== undefined) {
@@ -625,7 +782,7 @@ module.exports = {
             type: 4,
             data: {
               content: returnText,
-              flags: "64",
+              flags: replyflags,
             },
           },
         });
@@ -905,9 +1062,22 @@ module.exports = {
       if (msg && varName3) this.storeValue(msg, storage3, varName3, cache)
       this.callNextAction(cache)
     })
-
-    this.callNextAction(cache)
   },
 
-  mod() {},
+  mod(DBM) {
+    DBM.Actions.anchorJump = function (id, cache) {
+      const anchorIndex = cache.actions.findIndex((a) => a.name === 'Create Anchor' && a.anchor_id === id)
+      if (anchorIndex === -1) throw new Error('There was not an anchor found with that exact anchor ID!')
+      cache.index = anchorIndex - 1
+      this.callNextAction(cache)
+    }
+
+    DBM.Actions.anchorExist = function (id, cache) {
+      const anchorIndex = cache.actions.findIndex((a) => a.name === 'Create Anchor' && a.anchor_id === id)
+      if (anchorIndex === -1) {
+        return false
+      }
+      return true
+    }
+  },
 };
