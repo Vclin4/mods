@@ -105,7 +105,7 @@ module.exports = {
 
   <div style="float: left; padding: 7px"><span onclick="glob.changeDisplay('divfirstbutton')" style="user-select: none; cursor: pointer; margin-right: 5px; background: #5865f2; padding: 5px; border-radius: 3px; color: #ffffff;">First Btn</span><br><br>
     <div id="divfirstbutton" style="display: none;">
-      <select id="button" class="round" onchange="glob.button(this)">
+      <select id="button" class="round" onchange="glob.buttonElemtsChange(this)">
         <option value="0">Button</option>
         <option value="1">Link Button</option>
         <option value="2">Emoji Button</option>
@@ -160,7 +160,7 @@ module.exports = {
 
  <div style="float: left; padding: 7px"><span onclick="glob.changeDisplay('divsecondbutton')" style="user-select: none; cursor: pointer; margin-right: 5px; background: #5865f2; padding: 5px; border-radius: 3px; color: #ffffff;">Second Btn</span><br><br>
     <div id="divsecondbutton" style="display: none;">
-      <select id="button_sec" class="round" onchange="glob.button(this)">
+      <select id="button_sec" class="round" onchange="glob.buttonElemtsChange(this)">
         <option value="0">Button</option>
         <option value="1">Link Button</option>
         <option value="2">Emoji Button</option>
@@ -215,7 +215,7 @@ module.exports = {
 
  <div style="float: left; padding: 7px"><span onclick="glob.changeDisplay('divthirdbutton')" style="user-select: none; cursor: pointer; margin-right: 5px; background: #5865f2; padding: 5px; border-radius: 3px; color: #ffffff;">Third Btn</span><br><br>
     <div id="divthirdbutton" style="display: none;">
-      <select id="button_thi" class="round" onchange="glob.button(this)">
+      <select id="button_thi" class="round" onchange="glob.buttonElemtsChange(this)">
         <option value="0">Button</option>
         <option value="1">Link Button</option>
         <option value="2">Emoji Button</option>
@@ -270,7 +270,7 @@ module.exports = {
 
  <div style="float: left; padding: 7px"><span onclick="glob.changeDisplay('divfourthbutton')" style="user-select: none; cursor: pointer; margin-right: 5px; background: #5865f2; padding: 5px; border-radius: 3px; color: #ffffff;">Fourth Btn</span><br><br>
  <div id="divfourthbutton" style="display: none;">
-   <select id="button_fou" class="round" onchange="glob.button(this)">
+   <select id="button_fou" class="round" onchange="glob.buttonElemtsChange(this)">
      <option value="0">Button</option>
      <option value="1">Link Button</option>
      <option value="2">Emoji Button</option>
@@ -325,7 +325,7 @@ module.exports = {
 
 <div style="float: left; padding: 7px"><span onclick="glob.changeDisplay('divfifthbutton')" style="user-select: none; cursor: pointer; margin-right: 5px; background: #5865f2; padding: 5px; border-radius: 3px; color: #ffffff;">Fifth Btn</span><br><br>
 <div id="divfifthbutton" style="display: none;">
-  <select id="button_fif" class="round" onchange="glob.button(this)">
+  <select id="button_fif" class="round" onchange="glob.buttonElemtsChange(this)">
     <option value="0">Button</option>
     <option value="1">Link Button</option>
     <option value="2">Emoji Button</option>
@@ -439,9 +439,7 @@ module.exports = {
       }
     }
 
-    glob.memberChange(document.getElementById("member"), "varNameContainer");
-
-    glob.button = function (element) {
+    glob.buttonElemtsChange = function (element) {
       let divbuttonid, divbuttonstyle, divbuttonurl, divbuttonemoji;
       if (element.id == "button") {
         divbuttonid = document.getElementById('divbuttonid');
@@ -531,6 +529,7 @@ module.exports = {
           break
       }
     }
+    glob.memberChange(document.getElementById("member"), "varNameContainer");
   },
 
   async action(cache) {
