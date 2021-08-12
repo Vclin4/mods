@@ -16,12 +16,9 @@ module.exports = {
 
   html(isEvent, data) {
     return `
-    	<p>
-    Author: MineEjo#6143 | https://github.com/MineEjo
-  </p>
 <div style="padding-top: 8px;">
   <div style="float: left; width: 35%;">
-    Length:<br>
+  <a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">MinEjo-DBM | </a>Length:<br>
     <input id="lengthWord" class="round" type="text">
   </div>
     <div style="float: right; width: 60%;">

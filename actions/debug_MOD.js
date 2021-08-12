@@ -13,7 +13,7 @@ module.exports = {
     return `
 <div style="width: 99%;">
 <div style="padding-top: 8px; width: 45%; float: left;">
-  Status:
+  <a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">MinEjo-DBM | </a> Status:
   <select id="status" class="round">
     <option value="0" selected>Off</option>
     <option value="1">On</option>

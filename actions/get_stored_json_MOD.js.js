@@ -18,7 +18,7 @@ module.exports = {
     return `
 <div style="width: 99%;">
  <div style="width: 100%; float: left">
-  Path:<br>
+ <a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">MinEjo-DBM | </a>Path:<br>
   <input id="path" class="round" type="text" placeholder="./data/test.json">
   </div<
 </div>

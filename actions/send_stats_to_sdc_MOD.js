@@ -12,13 +12,9 @@ module.exports = {
 	html() {
 		return `
 <div id="modinfo">
-	<div style="float: left; width: 99%; padding-top: 8px;">
-	<p>
-    Author: MineEjo#6143 | https://github.com/MineEjo
-  </p>
 	</div>
   <div style="float: left; width: 99%; padding-top: 8px;">
-    Your SDC Token:<br>
+  <a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">MinEjo-DBM | </a>Your SDC Token:<br>
     <input id="sdcToken" class="round" type="text">
   </div><br>
   <div style="float: left; width: 99%; padding-top: 8px;">

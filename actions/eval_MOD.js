@@ -16,12 +16,9 @@ module.exports = {
 
   html(isEvent, data) {
     return `
-    	<p>
-    Author: MineEjo#6143 | https://github.com/MineEjo
-  </p>
 <div style="padding-top: 8px;">
   <div style="float: left; width: 100%;">
-  Evaluate:<br>
+  <a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">MinEjo-DBM | </a>Evaluate:<br>
     <textarea style="resize: vertical; width: 100%; height: 100px;" id="evaluate"></textarea>
   </div>
   <div style="float: left; width: 35%; margin-top: 15px;">
