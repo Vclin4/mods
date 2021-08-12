@@ -89,9 +89,10 @@ module.exports = {
   html(isEvent, data) {
     return `
 <div id ="modinfo" style="width: 550px; height: 350px; overflow-y: scroll; overflow-x: scroll;">
-	<p>
-    Author: MineEjo#6143 | https://github.com/MineEjo | <a href="#" onclick="DBM.openLink('https://discord.com/developers/docs/interactions/message-components#button-object-button-styles')">Documentation</a>
-	</p>
+    <p>
+    <a href="#" onclick="DBM.openLink('https://discord.com/developers/docs/interactions/message-components#button-object-button-styles')">Documentation | </a>
+    <a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">MinEjo-DBM </a>
+    </p>
   <div style="float: left; width: 35%;">
     Source Embed Object:<br>
     <select id="storage" class="round" onchange="glob.refreshVariableList(this)">
