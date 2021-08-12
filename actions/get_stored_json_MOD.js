@@ -16,9 +16,24 @@ module.exports = {
 
   html: function (isEvent, data) {
     return `
-<div style="width: 99%;">
+  <div style="width: 99%;">
+<div style="width: 100%; float: left; padding-bottom: 7px;">
+<a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">Mode Info:</a>
+<textarea id="descMODE" style="width: 100%; resize: none; background-color: #00000046; border-left: 3px #53585f solid; border-top: none; border-bottom: none; border-right: none; transition: 0.2s; overflow: hidden; color: gray" disabled>Hover me!
+JavaScript Object Notation (JSON) is a standard text-based format for representing structured data based on JavaScript object syntax.
+Some examples:
+{ "homeTown": "Metro City", "active": true, "members": [
+    { "power": ["Radiation resistance"] } ] }
+Js Code:
+json.homeTown - Metro City
+json['active'] - true
+json['members'][0]['power'][0] - Radiation resistance
+Version 1.0;
+</textarea>
+<style>#descMODE {height: 25px;} #descMODE:hover {height: 230px;}</style>
+</div>
  <div style="width: 100%; float: left">
- <a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">MinEjo-DBM | </a>Path:<br>
+  Path:<br>
   <input id="path" class="round" type="text" placeholder="./data/test.json">
   </div<
 </div>

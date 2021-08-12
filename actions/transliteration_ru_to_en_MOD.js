@@ -14,20 +14,28 @@ module.exports = {
 
   fields: ["storage", "varName", "letters"],
 
-  html(isEvent, data) {
-    return `
-<div style="padding-top: 8px;">
+html(isEvent, data) {
+  return `
+<div style="width: 99%; overflow: visible;">
+<div style="width: 100%; float: left; padding-bottom: 7px;">
+<a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">Mode Info:</a>
+<textarea id="descMODE" style="width: 100%; resize: none; background-color: #00000046; border-left: 3px #53585f solid; border-top: none; border-bottom: none; border-right: none; transition: 0.2s; overflow: hidden; color: gray" disabled>Hover me!
+Converts Russian letters to Latin, does not translate words.
+Version 1.0;
+</textarea>
+<style>#descMODE {height: 25px;} #descMODE:hover {height: 70px;}</style>
+</div>
   <div style="float: left; width: 100%;">
-  <a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">MinEjo-DBM | </a>Letters:<br>
-    <input id="letters" class="round" type="text">
+  Letters:<br>
+    <input style="width: 100%;" id="letters" class="round" type="text">
   </div><br><br><br>
-  <div style="float: left; width: 35%;">
+  <div style="float: left; width: 35%; margin-top: 15px;">
     Store In:<br>
     <select id="storage" class="round">
       ${data.variables[1]}
     </select>
   </div>
-  <div id="varNameContainer" style="float: right; width: 60%;">
+  <div id="varNameContainer" style="float: right; width: 60%; margin-top: 15px;">
     Variable Name:<br>
     <input id="varName" class="round" type="text">
   </div>

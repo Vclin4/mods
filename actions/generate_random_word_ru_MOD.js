@@ -16,9 +16,17 @@ module.exports = {
 
   html(isEvent, data) {
     return `
-<div style="padding-top: 8px;">
+  <div style="width: 99%; overflow: visible;">
+<div style="width: 100%; float: left; padding-bottom: 7px;">
+<a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">Mode Info:</a>
+<textarea id="descMODE" style="width: 100%; resize: none; background-color: #00000046; border-left: 3px #53585f solid; border-top: none; border-bottom: none; border-right: none; transition: 0.2s; overflow: hidden; color: gray" disabled>Hover me!
+Generating random words from a dictionary of about 1 thousand words.
+Version 1.0;
+</textarea>
+<style>#descMODE {height: 25px;} #descMODE:hover {height: 85px;}</style>
+</div>
   <div style="float: left; width: 35%;">
-  <a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">MinEjo-DBM | </a>Length:<br>
+  Length:<br>
     <input id="lengthWord" class="round" type="text">
   </div>
     <div style="float: right; width: 60%;">

@@ -11,9 +11,17 @@ module.exports = {
 
   html: function (isEvent, data) {
     return `
-<div style="width: 99%;">
+<div style="width: 99%; overflow: visible;">
+<div style="width: 100%; float: left; padding-bottom: 7px;">
+<a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">Mode Info:</a>
+<textarea id="descMODE" style="width: 100%; resize: none; background-color: #00000046; border-left: 3px #53585f solid; border-top: none; border-bottom: none; border-right: none; transition: 0.2s; overflow: hidden; color: gray" disabled>Hover me!
+Use this action if some action in your command is not working. Start with the first action, put this Debug Mode in front of it, if the log shows the date and the number of executed actions, the command works. Going through the actions this way, you can find the error.
+Version 1.0;
+</textarea>
+<style>#descMODE {height: 25px;} #descMODE:hover {height: 140px;}</style>
+</div>
 <div style="padding-top: 8px; width: 45%; float: left;">
-  <a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">MinEjo-DBM | </a> Status:
+ Status:
   <select id="status" class="round">
     <option value="0" selected>Off</option>
     <option value="1">On</option>
@@ -33,10 +41,6 @@ module.exports = {
 <div style="padding-top: 8px; width: 100%; float: left;">
   Run Command in Console:
   <textarea style="width: 100%; resize: vertical" id="command_log"></textarea>
-</div>
-<div style="padding-top: 8px; width: 100%; float: left;">
-  How to use it:
-  <textarea style="width: 100%; resize: none; background: none; border-left: 3px #53585f solid; border-top: none; border-bottom: none; border-right: none;" disabled rows="4">Use this action if some action in your team is not working. Start with the first action, put this Debug Mode in front of it, if the log shows the date and the number of executed actions, the command works. Going through the actions this way, you can find the error.</textarea>
 </div>
 </div>`
   },
