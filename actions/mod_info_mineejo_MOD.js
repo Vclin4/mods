@@ -46,7 +46,7 @@ module.exports = {
     const fetch = Mods.require('node-fetch')
     const data = cache.actions[cache.index]
     let updatecount = this.evalMessage(data.updatecount, cache);
-    const updatecheck = parseInt(data.updatecheck, 10);
+    const updatecheck = parseInt(data.updatecheck, cache);
     if (updatecheck == 0) {
       try {
         let html = await fetch('https://raw.githubusercontent.com/MinEjo-DBM/mods/main/README.md').then((r) => r.text());
