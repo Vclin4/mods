@@ -18,4 +18,4 @@ Here are some mods for Discord Bot Maker!
 3. Move the downloaded actions folder to the actions folder
 
 ### Other
-Number of updates: 0
+Number of updates: 1
