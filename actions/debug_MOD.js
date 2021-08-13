@@ -13,12 +13,12 @@ module.exports = {
     return `
 <div style="width: 99%; overflow: visible;">
 <div style="width: 100%; float: left; padding-bottom: 7px;">
-<a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">Mode Info:</a>
-<textarea id="descMODE" style="width: 100%; resize: none; background-color: #00000046; border-left: 3px #53585f solid; border-top: none; border-bottom: none; border-right: none; transition: 0.2s; overflow: hidden; color: gray" disabled>Hover me!
+<a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">Mod Info:</a>
+<textarea id="descMOD" style="width: 100%; resize: none; background-color: #00000046; border-left: 3px #53585f solid; border-top: none; border-bottom: none; border-right: none; transition: 0.2s; overflow: hidden; color: gray" disabled>Hover me!
 Use this action if some action in your command is not working. Start with the first action, put this Debug Mode in front of it, if the log shows the date and the number of executed actions, the command works. Going through the actions this way, you can find the error.
 Version 1.0;
 </textarea>
-<style>#descMODE {height: 25px;} #descMODE:hover {height: 140px;}</style>
+<style>#descMOD {height: 25px;} #descMOD:hover {height: 140px;}</style>
 </div>
 <div style="padding-top: 8px; width: 45%; float: left;">
  Status:

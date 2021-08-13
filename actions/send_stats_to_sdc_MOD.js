@@ -13,15 +13,15 @@ html() {
 	return `
 <div style="width: 99%; overflow: visible;">
 <div style="width: 100%; float: left; padding-bottom: 7px;">
-<a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">Mode Info:</a>
-<textarea id="descMODE" style="width: 100%; resize: none; background-color: #00000046; border-left: 3px #53585f solid; border-top: none; border-bottom: none; border-right: none; transition: 0.2s; overflow: hidden; color: gray" disabled>Hover me!
+<a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">Mod Info:</a>
+<textarea id="descMOD" style="width: 100%; resize: none; background-color: #00000046; border-left: 3px #53585f solid; border-top: none; border-bottom: none; border-right: none; transition: 0.2s; overflow: hidden; color: gray" disabled>Hover me!
 Send monitoring statistics to SDC https://bots.server-discord.com.
 - Make sure you put a delay between sending statistics.
 - Specify 0 shards if you don't have any.
 - To send, you need the npm package - node-fetch.
 Version 1.0;
 </textarea>
-<style>#descMODE {height: 25px;} #descMODE:hover {height: 120px;}</style>
+<style>#descMOD {height: 25px;} #descMOD:hover {height: 120px;}</style>
 </div>
   <div style="float: left; width: 49.5%;">
   SDC Token:<br>
