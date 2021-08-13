@@ -27,13 +27,14 @@ module.exports = {
     <option value="0">Automatically</option>
     <option value="1">None</option>
     </select>
+    <a style="margin-left: 1%" class="download_button" href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM/mods/archive/refs/heads/main.zip')">Download Mods</a>
     <p>Set this action to event: Bot Initialization, to check for updates when the bot starts.</p>
     </p>
 
     <style>
     a.discord_channel {border-radius: 3px; background-color: rgba(114, 137, 218, .1);color: #7289da;cursor: pointer;font-family: sans-serif;padding: 2px;}
     a.discord_channel:hover {background-color: rgba(114, 137, 218, .7);color: #fff;}
-    .discord_code_blocks {background: #2f3136;border: 1.5px solid #2b2c31;border-radius: 7px;box-sizing: border-box;overflow: hidden;padding: 4px 10px;color: #839496;font-family: Consolas;}
+    .discord_code_blocks {cursor: pointer; background: #2f3136;border: 1.5px solid #2b2c31;border-radius: 7px;box-sizing: border-box;overflow: hidden;padding: 5px 10px;color: #839496;font-family: Consolas;} .download_button {background: #2f3136;border: 1.5px solid #2b2c31;border-radius: 7px;box-sizing: border-box;overflow: hidden;padding: 4px 10px;color: #839496;font-family: Consolas;} .download_button:hover {border: 1.5px solid rgba(114, 137, 218, .1); background: rgba(114, 137, 218, .7);color: #fff; color: #fff;}
     </style>
   <div>
 </div>`
