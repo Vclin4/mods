@@ -17,7 +17,4 @@ Here are some mods for Discord Bot Maker!
 2. Open your project folder
 3. Move the downloaded actions folder to the actions folder
 
-<details>
-  <summary>For mode</summary>
-  Number of updates: 0;
-</details>
+### Number of updates: 0;
