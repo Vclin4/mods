@@ -18,5 +18,4 @@ Here are some mods for Discord Bot Maker!
 3. Move the downloaded actions folder to the actions folder
 
 ### Other
-Actions File ID: 875932218881622067
 Number of updates: 1
