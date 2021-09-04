@@ -18,7 +18,7 @@ module.exports = {
     <a style="margin-left: 1%" class="discord_channel" href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM/mods/archive/refs/heads/main.zip')">Download Mods</a>
     <p style="margin-top: 3%">
     Your version:
-    <input style="width: 10%; margin-left: 1%" id="updatecount" class="discord_code_blocks" type="text" value="2" disabled /><br><br>
+    <input style="width: 10%; margin-left: 1%" id="updatecount" class="discord_code_blocks" type="text" value="3" disabled /><br><br>
     <span>Update check:</span><select id="updatecheck" class="discord_code_blocks" style="margin-left: 1%">
     <option value="0">Yes</option>
     <option value="1">No</option>
