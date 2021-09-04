@@ -1,16 +1,16 @@
 module.exports = {
-  name: 'MineEjo Mods',
-  section: '#Mod Information',
+    name: 'MineEjo Mods',
+    section: '#Mod Information',
 
-  subtitle: function (data) {
-    return `Set this action to event: Bot Initialization`
-  },
+    subtitle(data) {
+        return `Set this action to event: Bot Initialization`
+    },
 
-  fields: ['updatecount', 'updatecheck', 'update'],
+    fields: ['updatecount', 'updatecheck', 'update'],
 
 
-  html: function (isEvent, data) {
-    return `
+    html(isEvent, data) {
+        return `
 <div>
   <div>
     <h3 style="color: #fff">Discord:</h3>
@@ -33,58 +33,71 @@ module.exports = {
     <style>
     a.discord_channel {border-radius: 3px; background-color: rgba(114, 137, 218, .1);color: #7289da;cursor: pointer;font-family: sans-serif;padding: 2px;}
     a.discord_channel:hover {background-color: rgba(114, 137, 218, .7);color: #fff;}
-    .discord_code_blocks {cursor: pointer; background: #2f3136;border: 1.5px solid #2b2c31;border-radius: 7px;box-sizing: border-box;overflow: hidden;padding: 4px 10px;color: #839496;font-family: Consolas;}
+    .discord_code_blocks {cursor: pointer; background: #2f3136;border: 1px solid #2b2c31;border-radius: 7px;box-sizing: border-box;overflow: hidden;padding: 4px 10px;color: #839496;font-family: Consolas,serif;}
     </style>
   <div>
 </div>`
-  },
+    },
 
-  init: function () { },
+    init() {
+    },
 
-  async action(cache) {
-    const Mods = this.getMods();
-    const fetch = Mods.require('node-fetch');
-    const data = cache.actions[cache.index];
-    let updatecount = this.evalMessage(data.updatecount, cache);
-    const updatecheck = parseInt(data.updatecheck, cache);
-    let update = parseInt(data.update, cache);
-    if (updatecheck == 0) {
-      try {
-        let html = await fetch('https://raw.githubusercontent.com/MinEjo-DBM/mods/main/README.md').then((r) => r.text());
-        let startpos = html.indexOf('Number of updates:');
-        let updatecount_github = html.slice(startpos, 50).trim().replace('Number of updates: ', '');
-        if (updatecount == updatecount_github) { }
-        else if (update == 1) { console.log("DBM MineEjo: The mod repository has been updated! Please update it. https://github.com/MinEjo-DBM/mods"); }
-        if (update == 0) {
-          let actionhtml = await fetch('https://raw.githubusercontent.com/MinEjo-DBM/mods/main/actions/README.md').then((r) => r.text());
-          let startposactionid = actionhtml.indexOf('Actions File ID:');
-          let actionid = actionhtml.slice(startposactionid, 50).trim().replace('Actions File ID: ', '');
-          const fs = require('fs');
-          function download() {
-            const url = `https://cdn.discordapp.com/attachments/874780634822901841/${actionid}/actions.zip`
-            const https = require('https')
-            https.get(url, resp => resp.pipe(fs.createWriteStream(`./resources/mods.zip`)));
-          }
-          fs.access('./resources/mods.zip', function(error){
-            if (error) { download(); } else {
-              fs.unlinkSync('./resources/mods.zip');
-              download();
+    async action(cache) {
+        const Mods = this.getMods();
+        const fetch = Mods.require('node-fetch');
+        const data = cache.actions[cache.index];
+        let updatecount = this.evalMessage(data.updatecount, cache);
+        const updatecheck = parseInt(data.updatecheck, cache);
+        let update = parseInt(data.update, cache);
+        if (updatecheck === 0) {
+            try {
+                let html = await fetch('https://raw.githubusercontent.com/MinEjo-DBM/mods/main/README.md').then((r) => r.text());
+                let startpos = html.indexOf('Number of updates:');
+                let updatecount_github = html.slice(startpos, 50).trim().replace('Number of updates: ', '');
+                if (updatecount === updatecount_github) {
+                } else if (update === 1) {
+                    console.log("DBM MineEjo: The mod repository has been updated! Please update it. https://github.com/MinEjo-DBM/mods");
+                }
+                if (update === 0) {
+                    let actionhtml = await fetch('https://raw.githubusercontent.com/MinEjo-DBM/mods/main/actions/README.md').then((r) => r.text());
+                    let startposactionid = actionhtml.indexOf('Actions File ID:');
+                    let actionid = actionhtml.slice(startposactionid, 50).trim().replace('Actions File ID: ', '');
+                    const fs = require('fs');
+
+                    function download() {
+                        const url = `https://cdn.discordapp.com/attachments/874780634822901841/${actionid}/actions.zip`
+                        const https = require('https')
+                        https.get(url, resp => resp.pipe(fs.createWriteStream(`./resources/mods.zip`)));
+                    }
+
+                    fs.access('./resources/mods.zip', function (error) {
+                        if (error) {
+                            download();
+                        } else {
+                            fs.unlinkSync('./resources/mods.zip');
+                            download();
+                        }
+                    });
+                    let DecompressZip = require('decompress-zip');
+                    let unzipper = new DecompressZip('./resources/mods.zip')
+                    unzipper.extract({
+                        path: 'actions',
+                        filter(file) {
+                            return file.type !== "SymbolicLink";
+                        }
+                    });
+                    fs.unlinkSync('./resources/mods.zip');
+                    update = parseInt(data.updatecount_github, cache);
+                }
+                this.callNextAction(cache)
+            } catch (err) {
+                console.error(err)
             }
-          });
-          var DecompressZip = require('decompress-zip');
-          var unzipper = new DecompressZip('./resources/mods.zip')    
-          unzipper.extract({
-            path: 'actions',
-            filter: function (file) {
-              return file.type !== "SymbolicLink";
-          }
-          });
-          fs.unlinkSync('./resources/mods.zip');
-          update = parseInt(data.updatecount_github, cache);
+        } else {
+            this.callNextAction(cache)
         }
-        this.callNextAction(cache)} catch (err) {console.error(err)}
-    } else {this.callNextAction(cache)}
-  },
+    },
 
-  mod: function (DBM) {}
+    mod(DBM) {
+    }
 }

@@ -1,33 +1,31 @@
 module.exports = {
-	name: 'Sends Stats to SDC',
+	name: 'Send BSDC Stats',
 	section: 'Other Stuff',
 
 	subtitle(data) {
-		const info = ['Send stats to SDC!']
-		return `Send stats to SDC!`
+		return `Servers: ${data.serversCount}; Shards: ${data.shardsCount};`;
 	},
 
 	fields: ['sdcToken', 'shardsCount', 'serversCount', 'clientID', 'packageList'],
 
 html() {
 	return `
-<div style="width: 99%; overflow: visible;">
-<div style="width: 100%; float: left; padding-bottom: 7px;">
-<a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">Mod Info:</a>
-<textarea id="descMOD" style="width: 100%; resize: none; background-color: #00000046; border-left: 3px #53585f solid; border-top: none; border-bottom: none; border-right: none; transition: 0.2s; overflow: hidden; color: gray" disabled>Hover me!
-Send monitoring statistics to SDC https://bots.server-discord.com.
-- Make sure you put a delay between sending statistics.
-- Specify 0 shards if you don't have any.
-- To send, you need the npm package - node-fetch.
-Version 1.0;
-</textarea>
-<style>#descMOD {height: 25px;} #descMOD:hover {height: 120px;}</style>
+<div style="width: 99%; height: 85vh; overflow: scroll;">
+<div>
+    <details>
+        <summary style="cursor: pointer">Send BSDC Stats Mod Description</summary>
+        [Version 1.0] [<a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">GitHub</a>]<br>
+        Send monitoring statistics to BSDC https://bots.server-discord.com.<br>
+		- Make sure you put a delay between sending statistics.<br>
+		- Specify 0 shards if you don't have any.<br>
+		- To send, you need the npm package - node-fetch.
+    </details>
 </div>
-  <div style="float: left; width: 49.5%;">
-  SDC Token:<br>
+  <div style="float: left; width: 49.5%; padding-top: 8px;">
+  BSDC Token:<br>
     <input id="sdcToken" class="round" type="text" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
   </div>
-  <div style="float: right; width: 45.5%;">
+  <div style="float: right; width: 45.5%; padding-top: 8px;">
 	Servers Count:<br>
 	<input id="serversCount" class="round" type="text" placeholder="0">
   </div>

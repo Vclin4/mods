@@ -35,9 +35,9 @@ module.exports = {
           <i class="maximize icon"></i>
           </button>
         </div>
-<div id="wrexdiv" style="width: 100%; height: 91vh;>
+<div id="wrexdiv" style="width: 100%; height: 91vh;">
   <div style="width: 100%; height: 91vh;">
-    <iframe id="JSEditor" style="visibility: hidden; width: 100%; height: 91vh;" frameBorder="0"></iframe>
+    <iframe id="JSEditor" style="visibility: hidden; width: 100%; height: 91vh;"></iframe>
     <textarea id="code" name="is-eval" style="display: none; width: 100%; height: 91vh; white-space: nowrap; resize: none;"></textarea>
   </div>
   </div>
@@ -65,7 +65,7 @@ module.exports = {
 <textarea id="hideCode" style="display: none;"></textarea>
 
 <script>
-  var editor = ace.edit("editor", {
+  let editor = ace.edit("editor", {
     mode: "ace/mode/javascript",
     theme: "ace/theme/monokai"
   });
@@ -94,7 +94,7 @@ module.exports = {
     left: 0;
     right: 0;
     bottom: 0;
-    font-size: 14.0px;
+    font-size: 14.0;
   }
 
   .ace-monokai {

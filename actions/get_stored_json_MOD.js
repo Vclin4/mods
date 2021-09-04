@@ -1,36 +1,52 @@
 module.exports = {
-  name: 'Get Stored Json',
-  section: 'JSON Things',
-  subtitle: function (data) {
-    return `${data.path}`
-  },
+    name: 'Get Stored Json',
+    section: 'JSON Things',
+    subtitle(data) {
+        return `${data.path}`
+    },
 
-  variableStorage: function (data, varType) {
-    const type = parseInt(data.storage)
-    if (type !== varType) return
-    const dataType = 'JSON'
-    return ([data.varName, dataType])
-  },
+    variableStorage(data, varType) {
+        const type = parseInt(data.storage)
+        if (type !== varType) return
+        const dataType = 'JSON'
+        return ([data.varName, dataType])
+    },
 
-  fields: ['path', 'format', 'code', 'storage', 'varName'],
+    fields: ['path', 'format', 'code', 'storage', 'varName'],
 
-  html: function (isEvent, data) {
-    return `
-  <div style="width: 99%;">
-<div style="width: 100%; float: left; padding-bottom: 7px;">
-<a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">Mod Info:</a>
-<textarea id="descMOD" style="width: 100%; resize: none; background-color: #00000046; border-left: 3px #53585f solid; border-top: none; border-bottom: none; border-right: none; transition: 0.2s; overflow: hidden; color: gray" disabled>Hover me!
-JavaScript Object Notation (JSON) is a standard text-based format for representing structured data based on JavaScript object syntax.
-Some examples:
-{ "homeTown": "Metro City", "active": true, "members": [
-    { "power": ["Radiation resistance"] } ] }
-Js Code:
-json.homeTown - Metro City
-json['active'] - true
-json['members'][0]['power'][0] - Radiation resistance
-Version 1.0;
-</textarea>
-<style>#descMOD {height: 25px;} #descMOD:hover {height: 230px;}</style>
+    html(isEvent, data) {
+        return `
+  <div style="width: 99%; height: 85vh; overflow: scroll;">
+<div>
+<style>.title { color: #ef596f} .subtitle { color: #86c96d}</style>
+    <details>
+        <summary style="cursor: pointer">Get Stored Json Mod Description</summary>
+        [Version 1.0] [<a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">GitHub</a>]<br>
+        JavaScript Object Notation (JSON) is a standard text-based format for representing structured data based on JavaScript object syntax.<br>
+        Some examples:<div style="padding: 0 15px 0 15px; background: rgba(0,0,0,0.13); border-radius: 3px">
+        <pre>
+        
+        {
+          <span class="title">"homeTown"</span>: <span class="subtitle">"Metro City"</span>,
+          <span class="title">"active"</span>: true,
+          <span class="title">"members"</span>: [
+            {
+              <span class="title">"power"</span>: [
+                <span class="subtitle">"Radiation resistance"</span>
+              ]
+            }
+          ]
+        }
+        </pre></div>
+        <div style="padding: 0 15px 0 15px; background: rgba(0,0,0,0.13); border-radius: 3px">
+        <pre>
+        
+        Js Code:
+        json.homeTown - <span class="subtitle">Metro City</span>
+        json['active'] - true
+        json['members'][0]['power'][0] - <span class="subtitle">Radiation resistance</span>
+        </pre></div>
+    </details>
 </div>
  <div style="width: 100%; float: left">
   Path:<br>
@@ -59,23 +75,25 @@ Version 1.0;
     <input id="varName" class="round" type="text">
   </div>
 </div>`
-  },
-  init: function () { },
-  
-  action: function (cache) {
-    const data = cache.actions[cache.index]
-    const storage = parseInt(data.storage)
-    const varName = this.evalMessage(data.varName, cache)
-    const path = this.evalMessage(data.path, cache)
-    const code = this.evalMessage(data.code, cache)
-    const format = parseInt(data.format, cache)
-    let json = require(require("path").join(process.cwd(), path));
-    if (code.length > 0) json = eval(code);
-    if (format == 1) json = JSON.stringify(json);
+    },
+    init() {
+    },
 
-    this.storeValue(json, storage, varName, cache)
-    this.callNextAction(cache)
-  },
+    action: function (cache) {
+        const data = cache.actions[cache.index]
+        const storage = parseInt(data.storage)
+        const varName = this.evalMessage(data.varName, cache)
+        const path = this.evalMessage(data.path, cache)
+        const code = this.evalMessage(data.code, cache)
+        const format = parseInt(data.format, cache)
+        let json = require(require("path").join(process.cwd(), path));
+        if (code.length > 0) json = eval(code);
+        if (format === 1) json = JSON.stringify(json);
 
-  mod: function (DBM) {}
+        this.storeValue(json, storage, varName, cache)
+        this.callNextAction(cache)
+    },
+
+    mod(DBM) {
+    }
 }

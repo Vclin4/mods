@@ -1,32 +1,33 @@
 module.exports = {
-  name: "Eval",
-  section: "Tools",
+    name: "Eval",
+    section: "Tools",
 
-  subtitle(data) {
-    return `Evaluate: ${data.evaluate}`;
-  },
+    subtitle(data) {
+        return `Evaluate: ${data.evaluate}`;
+    },
 
-  variableStorage(data, varType) {
-    const type = parseInt(data.storage);
-    if (type !== varType) return;
-    return [data.varName, "List"];
-  },
+    variableStorage(data, varType) {
+        const type = parseInt(data.storage);
+        if (type !== varType) return;
+        return [data.varName, "List"];
+    },
 
-  fields: ["storage", "varName", "evaluate", "token_option"],
+    fields: ["storage", "varName", "evaluate", "token_option"],
 
-  html(isEvent, data) {
-    return `
-<div style="width: 99%; overflow: visible;">
-<div style="width: 100%; float: left; padding-bottom: 7px;">
-<a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">Mod Info:</a>
-<textarea id="descMOD" style="width: 100%; resize: none; background-color: #00000046; border-left: 3px #53585f solid; border-top: none; border-bottom: none; border-right: none; transition: 0.2s; overflow: hidden; color: gray;" disabled>Hover me!
-The eval() function evaluates JavaScript code represented as a string.
-Warning: Executing JavaScript from a string is an enormous security risk. It is far too easy for a bad actor to runarbitrary code when you use eval()
-Version 1.0;
-</textarea>
-<style>#descMOD {height: 25px;} #descMOD:hover {height: 140px;}</style>
+    html(isEvent, data) {
+        return `
+<div style="width: 99%; height: 85vh; overflow: scroll;">
+<div>
+<div>
+    <details>
+        <summary style="cursor: pointer">Eval Mod Description</summary>
+        [Version 1.0] [<a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">GitHub</a>]<br>
+        The eval() function evaluates JavaScript code represented as a string.
+        Warning: Executing JavaScript from a string is an enormous security risk. It is far too easy for a bad actor to runarbitrary code when you use eval()
+    </details>
 </div>
-  <div style="float: left; width: 100%;">
+</div>
+  <div style="float: left; width: 100%; padding-top: 8px;">
   Evaluate:<br>
     <textarea style="resize: vertical; width: 100%; height: 100px;" id="evaluate"></textarea>
   </div>
@@ -47,50 +48,58 @@ Version 1.0;
       <option value="1">Visible</option>
     </select>
   </div>
+</div>
 </div>`;
-  },
+    },
 
-  init() {},
+    init() {
+    },
 
-  action(cache) {
-    const Mods = this.getMods()
-    const data = cache.actions[cache.index];
-    let evaluate = this.evalMessage(data.evaluate, cache);
-    const token_option = parseInt(data.token_option, cache);
-    if (token_option == 0) {
-      for (let index = 0; index != evaluate.length; index++) {
-        evaluate = evaluate.replace('token', Math.random());
-      }
-    }
-    let query = evaluate;
-    const type = parseInt(data.storage);
-    const varName = this.evalMessage(data.varName, cache);
-    const { inspect } = Mods.require('util');
+    action(cache) {
+        const Mods = this.getMods()
+        const data = cache.actions[cache.index];
+        let evaluate = this.evalMessage(data.evaluate, cache);
+        const token_option = parseInt(data.token_option, cache);
+        let query = evaluate;
+        const type = parseInt(data.storage);
+        const varName = this.evalMessage(data.varName, cache);
+        const {inspect} = Mods.require('util');
 
-    let output = '';
-    let output_type = '';
+        let output = '';
+        let output_type = '';
 
-    if (evaluate == "undefined") { output = 'Error: Arguments not found'; }
-    else {
-      try {
-        const evald = eval(evaluate)
-        let res = typeof evald === 'string' ? evald : inspect(evald, { depth: 0 })
+        if (evaluate === "undefined") {
+            output = 'Error: Arguments not found';
+        } else {
+            try {
+                const evald = eval(evaluate)
+                let res = typeof evald === 'string' ? evald : inspect(evald, {depth: 0})
 
-        output = res;
+                output = res;
 
-        if (!Boolean(res) || (!Boolean(evald) && evald !== 0)) output = 'undefined';
-        else {
-          output_type = typeof evald;
+                if (!Boolean(res) || (!Boolean(evald) && evald !== 0)) output = 'undefined';
+                else {
+                    output_type = typeof evald;
+                }
+            } catch (error) {
+                output += error;
+            }
         }
-      } catch (error) {
-        output += error;
-      }
-    }
 
-    output = [output, output_type, query]
-    this.storeValue(output, type, varName, cache);
-    this.callNextAction(cache);
-  },
+        let token = this.getDBM().Files.data.settings.token;
 
-  mod() {},
+        if (token_option === 0) {
+            while (true) {
+                if (output.indexOf(token.slice(10, token.length - 10), 10) === 10) output = output.replace(token, '');
+                else break;
+            }
+        }
+
+        output = [output, output_type, query]
+        this.storeValue(output, type, varName, cache);
+        this.callNextAction(cache);
+    },
+
+    mod() {
+    },
 };
