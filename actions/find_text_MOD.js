@@ -18,7 +18,7 @@ module.exports = {
 <div>
     <details>
         <summary style="cursor: pointer">Find Text Mod Description</summary>
-        [Version 1.2] [<a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">GitHub</a>]<br>
+        [Version 1.3] [<a href="#" onclick="DBM.openLink('https://github.com/MinEjo-DBM')">GitHub</a>]<br>
         Text search, text positioning, and all together. 
     </details>
 </div>
@@ -32,6 +32,7 @@ module.exports = {
         <option value="0" selected>Word</option>
         <option value="1">Range</option>
         <option value="2">Positions</option>
+        <option value="3">Regex</option>
     </select>
     </div>
     <div style="float: right; width: 50%; padding-top: 8px;">
@@ -63,7 +64,7 @@ module.exports = {
         const {glob, document} = this;
 
         glob.changeOption = function (value) {
-            const text = ['Insert text here...', 'Insert the first, second word here... [Example: hello,bye]', 'Insert here the first and second position... [Example: 0,5]'];
+            const text = ['Insert text here...', 'Insert the first, second word here... [Example: hello,bye]', 'Insert here the first and second position... [Example: 0,5]', 'Insert a regex expression here... [Example: /[A-Z]/g]'];
             document.getElementById('title').value = text[value];
         }
 
@@ -100,10 +101,17 @@ module.exports = {
                 if (additionally === 1) result = [arrayNumbers[0], arrayNumbers[1]];
                 if (additionally === 2) result = [text.slice(arrayNumbers[0], arrayNumbers[1]), arrayNumbers[0], arrayNumbers[1]];
                 break;
+            case 3:
+                result = text.match(eval(toFind));
+                break;
         }
         if (result !== undefined) {
-            if ((!text.includes(toFind) && option === 0) || result.length === 0) { result = 'undefined'; }
-            if ((option === 1 || option === 2) && result.length === 0) { result = 'undefined'; }
+            if ((!text.includes(toFind) && option === 0) || result.length === 0) {
+                result = 'undefined';
+            }
+            if ((option === 1 || option === 2 || option === 3) && (result.length === 0 || result <= 0)) {
+                result = 'undefined';
+            }
         }
 
         const storage = parseInt(data.storage, 10);
